@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Categorie {
     private String nom;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonBackReference
     private Set<Insecte> insectes;
 
     public long getId() {

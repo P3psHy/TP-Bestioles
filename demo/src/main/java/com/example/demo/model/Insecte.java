@@ -3,6 +3,8 @@ package com.example.demo.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +29,12 @@ public class Insecte {
         joinColumns = @JoinColumn(name = "insecte_id"),
         inverseJoinColumns = @JoinColumn(name = "categorie_id")
     )
+    @JsonManagedReference
     private Set<Categorie> categories;
 
     @ManyToOne
     @JoinColumn(name = "espece_id", nullable = false)
+    @JsonManagedReference
     private Espece espece;
 
 

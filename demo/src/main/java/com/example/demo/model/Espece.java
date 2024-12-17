@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ public class Espece {
     private String nom;
 
     @OneToMany(mappedBy = "espece", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private Set<Insecte> insectes;
 
     public long getId() {
