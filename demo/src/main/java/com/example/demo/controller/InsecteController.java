@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +31,7 @@ public class InsecteController {
     }
 
     @GetMapping("/insecte/{id}")
-    public Optional<Insecte> findInsecte(@PathVariable long id){
+    public Insecte findInsecte(@PathVariable long id){
         return insecteService.findByidInsecte(id);
     }
 
@@ -56,8 +55,7 @@ public class InsecteController {
 
     @PutMapping("/insecte/{id}")
     public void updateInsecte(@PathVariable long id, @RequestParam String nom, @RequestParam float poids, @RequestParam int especeId){
-        Insecte insecte = insecteService.findByidInsecte(id)
-        .orElseThrow(() -> new RuntimeException("Espèce introuvable avec l'ID : " + id));
+        Insecte insecte = insecteService.findByidInsecte(id);
 
         // Crée un nouvel insecte
         if(nom != ""){
