@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.InsecteDTO;
 import com.example.demo.handler.GlobalExceptionHandler.EntityToCreateHasAnIdException;
+import com.example.demo.mapper.InsecteMapper;
 import com.example.demo.model.Insecte;
 import com.example.demo.repository.InsecteRepository;
 
@@ -28,12 +31,16 @@ public class InsecteService {
 
 
     //REST
-    public List<Insecte> findAllInsectes() {
+    public List<InsecteDTO> findAllInsectes() {
         List<Insecte> insectes = insecteRepository.findAll();
         if (insectes.isEmpty()) {
             throw new EntityNotFoundException("Aucun insecte trouvé");
         }
-        return insectes;
+        List<InsecteDTO> insectesDTO = new ArrayList<>();
+        for (Insecte insecte : insectes) {
+            insectesDTO.add(InsecteMapper.toDTO(insecte));
+        }
+        return insectesDTO;
     }
 
     public Insecte findByidInsecte(long id) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.InsecteDTO;
 import com.example.demo.model.Espece;
 import com.example.demo.model.Insecte;
 import com.example.demo.service.EspeceService;
@@ -26,7 +27,7 @@ public class InsecteController {
     private EspeceService especeService;
 
     @GetMapping("/insecte")
-    public List<Insecte> findAllInsectes(){
+    public List<InsecteDTO> findAllInsectes(){
         return insecteService.findAllInsectes();
     }
 
